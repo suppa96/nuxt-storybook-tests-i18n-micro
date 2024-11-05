@@ -1,3 +1,6 @@
 <template>
-  <div>ciao</div>
+  <div>
+    ciao
+    <Icon name="icon:test" />
+  </div>
 </template>

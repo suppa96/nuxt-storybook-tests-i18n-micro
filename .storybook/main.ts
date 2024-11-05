@@ -1,21 +1,25 @@
-import type { StorybookConfig } from "@storybook-vue/nuxt";
+import type { StorybookConfig } from '@nuxtjs/storybook'
+import { mergeConfig } from 'vite'
 
 const config: StorybookConfig = {
-  stories: [
-    "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-  ],
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-  ],
+  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
   framework: {
-    name: "@storybook-vue/nuxt",
+    name: '@storybook-vue/nuxt',
     options: {},
   },
-  docs: {
-    autodocs: "tag",
+  docs: {},
+  core: {
+    disableTelemetry: true,
   },
-};
-export default config;
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      resolve: {
+        alias: {
+          vue: 'vue/dist/vue.esm-bundler.js',
+        },
+      },
+    })
+  },
+}
+export default config
