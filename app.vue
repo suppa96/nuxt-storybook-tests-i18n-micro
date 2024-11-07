@@ -1,6 +1,3 @@
 <template>
-  <div>
-    ciao
-    <Icon name="icon:test" />
-  </div>
+  <div>Home page</div>
 </template>
