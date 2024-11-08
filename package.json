@@ -21,14 +21,17 @@
     "@nuxtjs/storybook": "8.3.2",
     "@storybook-vue/nuxt": "8.3.2",
     "@storybook/addon-essentials": "8.4.2",
-    "@storybook/addon-interactions": "8.4.2",
     "@storybook/addon-links": "8.4.2",
     "@storybook/blocks": "8.4.2",
     "@storybook/builder-vite": "8.4.2",
+    "@storybook/experimental-addon-test": "^8.4.2",
     "@storybook/test": "8.4.2",
     "@storybook/vue3": "8.4.2",
     "@types/node": "^18.17.5",
-    "storybook": "8.4.2"
+    "@vitest/browser": "^2.1.4",
+    "playwright": "^1.48.2",
+    "storybook": "8.4.2",
+    "vitest": "^2.1.4"
   },
   "packageManager": "bun@1.1.31"
 }

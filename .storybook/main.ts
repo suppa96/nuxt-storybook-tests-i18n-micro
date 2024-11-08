@@ -3,7 +3,11 @@ import { mergeConfig } from 'vite'
 
 const config: StorybookConfig = {
   stories: ['../app/components/**/*.stories.ts'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/experimental-addon-test'
+  ],
   framework: {
     name: '@storybook-vue/nuxt',
     options: {},
