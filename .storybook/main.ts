@@ -6,7 +6,8 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/experimental-addon-test'
+    '@storybook/experimental-addon-test',
+    '@storybook/addon-a11y',
   ],
   framework: {
     name: '@storybook-vue/nuxt',
