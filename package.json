@@ -10,7 +10,8 @@
     "postinstall": "nuxt prepare",
     "storybook": "storybook dev --port 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_b2399b19448eb79"
+    "chromatic": "npx chromatic --project-token=chpt_b2399b19448eb79",
+    "test-storybook": "test-storybook"
   },
   "dependencies": {
     "@nuxt/icon": "^1.6.1",
@@ -29,9 +30,11 @@
     "@storybook/builder-vite": "8.4.2",
     "@storybook/experimental-addon-test": "^8.4.2",
     "@storybook/test": "8.4.2",
+    "@storybook/test-runner": "^0.19.1",
     "@storybook/vue3": "8.4.2",
     "@types/node": "^18.17.5",
     "@vitest/browser": "^2.1.4",
+    "axe-playwright": "^2.0.3",
     "playwright": "^1.48.2",
     "storybook": "8.4.2",
     "vitest": "^2.1.4"
