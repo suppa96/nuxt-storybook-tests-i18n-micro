@@ -3,21 +3,12 @@ import { mergeConfig } from 'vite'
 
 const config: StorybookConfig = {
   stories: ['../app/components/**/*.stories.ts'],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/experimental-addon-test',
-    '@storybook/addon-a11y',
-    '@chromatic-com/storybook'
-  ],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/experimental-addon-test', '@storybook/addon-a11y'],
   framework: {
     name: '@storybook-vue/nuxt',
     options: {},
   },
   docs: {},
-  core: {
-    disableTelemetry: true,
-  },
   async viteFinal(config) {
     return mergeConfig(config, {
       resolve: {
@@ -28,4 +19,5 @@ const config: StorybookConfig = {
     })
   },
 }
+
 export default config
