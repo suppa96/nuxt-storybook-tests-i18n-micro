@@ -5,5 +5,6 @@ const { $ts } = useI18n();
   <div>
     <p>{{ $ts("welcome") }}</p>
     <HelloWorld :msg="'index'" />
+    <I18nTestComponent />
   </div>
 </template>
