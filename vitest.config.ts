@@ -47,7 +47,7 @@ export default mergeConfig(
     test: {
       name: "storybook",
       // Make sure to adjust this pattern to match your stories files.
-      include: ["./app/components/**/*.stories.ts"],
+      include: ["./components/**/*.stories.ts"],
       // Enable browser mode
       browser: {
         enabled: true,
