@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/storybook", "@nuxt/icon"],
+  modules: ["@nuxtjs/storybook", "@nuxt/icon", "nuxt-i18n-micro"],
   icon: {
     customCollections: [
       {
@@ -12,7 +12,6 @@ export default defineNuxtConfig({
     locales: [
       { code: "en", iso: "en-US", dir: "ltr" },
       { code: "fr", iso: "fr-FR", dir: "ltr" },
-      { code: "ar", iso: "ar-SA", dir: "rtl" },
     ],
     defaultLocale: "en",
     translationDir: "./locales",

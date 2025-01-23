@@ -15,10 +15,12 @@
     "clean-auto-imports": "find ./ -type f -name 'auto-imports.d.ts' -exec rm -rf {} +",
     "clean-components": "find ./ -type f -name 'components.d.ts' -exec rm -rf {} +",
     "clean-project": "bun clean-node && bun clean-nuxt && bun clean-auto-imports && bun clean-components ",
-    "clean": "bun clean-project" },
+    "clean": "bun clean-project"
+  },
   "dependencies": {
     "@nuxt/icon": "^1.6.1",
     "nuxt": "^3.14.159",
+    "nuxt-i18n-micro": "^1.71.0",
     "vue": "latest",
     "vue-router": "latest"
   },
@@ -36,6 +38,7 @@
     "@types/node": "^18.17.5",
     "@vitest/browser": "^2.1.4",
     "axe-playwright": "^2.0.3",
+    "nuxt-i18n-micro-test-utils": "^1.0.6",
     "playwright": "^1.48.2",
     "storybook": "8.4.2",
     "vitest": "^2.1.4"
