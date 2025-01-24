@@ -19,7 +19,7 @@ const config: StorybookConfig = {
       ...config.server,
       proxy: {
         "/_locales": {
-          target: "http://localhost:6006", // Replace with your Nuxt server URL
+          target: "http://localhost:3000", // Replace with your Nuxt server URL
           changeOrigin: true,
           secure: false,
         },
@@ -40,7 +40,7 @@ const config: StorybookConfig = {
       ...config.devServer,
       proxy: {
         "/_locales": {
-          target: "http://localhost:6006", // Replace with your Nuxt server URL
+          target: "http://localhost:3000", // Replace with your Nuxt server URL
           changeOrigin: true,
           secure: false,
         },
