@@ -14,19 +14,20 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {},
+  staticDirs: ["../storybook_locales"],
   async viteFinal(config, { configType }) {
-    const serverConfig = {
-      ...config.server,
-      proxy: {
-        "/_locales": {
-          target: "http://localhost:3000", // Replace with your Nuxt server URL
-          changeOrigin: true,
-          secure: false,
-        },
-      },
-    };
+    // const serverConfig = {
+    //   ...config.server,
+    //   proxy: {
+    //     "/_locales": {
+    //       target: "http://localhost:3000", // Replace with your Nuxt server URL
+    //       changeOrigin: true,
+    //       secure: false,
+    //     },
+    //   },
+    // };
     return mergeConfig(config, {
-      server: serverConfig,
+      //   server: serverConfig,
       resolve: {
         alias: {
           vue: "vue/dist/vue.esm-bundler.js",
