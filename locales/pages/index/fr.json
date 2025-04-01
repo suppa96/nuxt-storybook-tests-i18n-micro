@@ -1,1 +1,5 @@
-{}
+{
+  "index": {
+    "i18nTestComponent": "Je suis la chaîne de caractères à l'intérieur de la page d'accueil"
+  }
+}

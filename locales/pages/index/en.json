@@ -1,1 +1,5 @@
-{}
+{
+  "index": {
+    "i18nTestComponent": "I'm the string inside the home page"
+  }
+}
