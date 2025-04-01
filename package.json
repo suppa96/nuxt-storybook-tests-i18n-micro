@@ -18,30 +18,35 @@
     "clean": "bun clean-project"
   },
   "dependencies": {
-    "@nuxt/icon": "^1.6.1",
-    "nuxt": "^3.14.159",
-    "nuxt-i18n-micro": "^1.71.0",
-    "vue": "latest",
-    "vue-router": "latest"
+    "@nuxt/icon": "^1.11.0",
+    "@nuxtjs/tailwindcss": "^6.13.2",
+    "nuxt": "^3.16.2",
+    "nuxt-i18n-micro": "^1.83.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@nuxtjs/storybook": "8.3.2",
-    "@storybook-vue/nuxt": "8.3.2",
-    "@storybook/addon-a11y": "8.4.2",
-    "@storybook/addon-essentials": "8.4.2",
-    "@storybook/addon-links": "8.4.2",
-    "@storybook/blocks": "8.4.2",
-    "@storybook/builder-vite": "8.4.2",
-    "@storybook/experimental-addon-test": "^8.4.2",
-    "@storybook/test": "8.4.2",
-    "@storybook/vue3": "8.4.2",
-    "@types/node": "^18.17.5",
-    "@vitest/browser": "^2.1.4",
-    "axe-playwright": "^2.0.3",
+    "@nuxtjs/storybook": "8.3.3",
+    "@storybook-vue/nuxt": "8.3.3",
+    "@storybook/addon-a11y": "8.6.11",
+    "@storybook/addon-essentials": "8.6.11",
+    "@storybook/addon-links": "8.6.11",
+    "@storybook/blocks": "8.6.11",
+    "@storybook/builder-vite": "8.6.11",
+    "@storybook/experimental-addon-test": "^8.6.11",
+    "@storybook/test": "8.6.11",
+    "@storybook/vue3": "8.6.11",
+    "@types/node": "^22.13.16",
+    "@vitest/browser": "^3.1.1",
+    "axe-playwright": "^2.1.0",
     "nuxt-i18n-micro-test-utils": "^1.0.6",
-    "playwright": "^1.48.2",
-    "storybook": "8.4.2",
-    "vitest": "^2.1.4"
+    "playwright": "^1.51.1",
+    "storybook": "8.6.11",
+    "vitest": "^3.1.1"
   },
-  "packageManager": "bun@1.1.31"
+  "packageManager": "bun@1.1.31",
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "nuxt-app"
+  ]
 }
