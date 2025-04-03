@@ -1,0 +1,118 @@
+name: Netlify E2E Tests
+on:
+  push:
+    branches: [main] # Trigger the workflow on push events to the main branch
+  pull_request:
+    branches: [main] # Trigger the workflow on pull request events targeting the main branch
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+  workflow_dispatch: # Allow manual triggering of the workflow
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests-e2e:
+    # If the pr is not in draft or the workflow is manually triggered, this GitHub Action should run
+    if: ${{ github.event.pull_request.draft == false || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest # Use the latest Ubuntu runner
+    timeout-minutes: 10 # Set a hard timeout of 10 minutes for the entire job
+
+    strategy:
+      fail-fast: false # Continue running jobs even if one of the jobs fails
+
+    steps:
+      # Used ``openssl base64 -in .env`` inside the project root to encrypt the .env file.
+      # The encrypted value is stored in the GitHub Secrets
+      #   - name: Decode secrets
+      #     run: |
+      #       echo "$ALL_SECRETS_DEV" | base64 -d >> $GITHUB_ENV
+      #     env:
+      #       ALL_SECRETS_DEV: ${{ secrets.ALL_SECRETS_DEV }}
+
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4 # Check out the repository code
+
+      - name: 🥟 Set up Bun environment
+        uses: oven-sh/setup-bun@v2 # Set up the Bun runtime
+        with:
+          bun-version: latest
+
+      - name: 🔧 Setup bun cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: 📦 Cache node modules
+        id: cache-node-modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: ⬇️ Install dependencies
+        run: |
+          if [ "${{ steps.cache-node-modules.outputs.cache-hit }}" != "true" ]; then
+            bun install --frozen-lockfile # Install dependencies if not cached
+          else
+            echo "✅ Dependencies are already cached"
+          fi
+        env:
+          # uses the 'IS_TESTING' environment variable to skip certain tasks in the postinstall script, where NODE_ENV would be different from 'test'
+          IS_TESTING: "true"
+
+      - name: 🔎 Get installed Playwright version
+        id: playwright-version
+        run: |
+          PLAYWRIGHT_VERSION=$(node -e "
+              const packageJson = require('./package.json');
+              console.log(packageJson.devDependencies['@playwright/test']);
+          ")
+          echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
+
+      - name: 🌍 Cache Playwright browsers
+        id: cache-playwright
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: 🌍 Install Playwright Browsers
+        run: |
+          if [ "${{ steps.cache-playwright.outputs.cache-hit }}" != "true" ]; then
+            bunx playwright install --with-deps
+          else
+            echo "✅ Playwright Browsers are already cached"
+            bunx playwright install-deps
+          fi
+
+      - name: Build server
+        run: bun run nuxt build
+        env:
+          PORT: 3000
+          IS_TESTING: "true"
+
+      - name: Start Website on Port 3000 and run tests
+        run: node packages/site/.output/server/index.mjs & bunx playwright test
+        env:
+          NODE_ENV: production
+
+      # For playwright report
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 5
