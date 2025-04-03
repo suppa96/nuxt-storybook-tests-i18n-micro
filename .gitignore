@@ -26,3 +26,7 @@ logs
 # nuxt-i18n-micro
 server/assets/_locales
 storybook_locales
+
+# playwright
+playwright-report/**
+test-results/**

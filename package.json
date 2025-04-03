@@ -15,7 +15,9 @@
     "clean-auto-imports": "find ./ -type f -name 'auto-imports.d.ts' -exec rm -rf {} +",
     "clean-components": "find ./ -type f -name 'components.d.ts' -exec rm -rf {} +",
     "clean-project": "bun clean-node && bun clean-nuxt && bun clean-auto-imports && bun clean-components ",
-    "clean": "bun clean-project"
+    "clean": "bun clean-project",
+    "test:e2e": "playwright test",
+    "test:e2e-ui": "playwright test --ui"
   },
   "dependencies": {
     "@nuxt/icon": "^1.11.0",
@@ -39,6 +41,8 @@
     "@types/node": "^22.13.16",
     "@vitest/browser": "^3.1.1",
     "axe-playwright": "^2.1.0",
+    "@nuxt/test-utils": "^3.17.2",
+    "@playwright/test": "^1.51.1",
     "nuxt-i18n-micro-test-utils": "^1.0.6",
     "playwright": "^1.51.1",
     "storybook": "8.6.11",
