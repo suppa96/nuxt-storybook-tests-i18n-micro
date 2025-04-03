@@ -18,7 +18,7 @@ concurrency:
 jobs:
   tests-e2e:
     # If the pr is not in draft or the workflow is manually triggered, this GitHub Action should run
-    if: ${{ github.event.pull_request.draft == false || github.event_name == 'workflow_dispatch' }}
+    if: ${{ false == true || github.event.pull_request.draft == false || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest # Use the latest Ubuntu runner
     timeout-minutes: 10 # Set a hard timeout of 10 minutes for the entire job
 

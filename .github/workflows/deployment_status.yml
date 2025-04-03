@@ -1,7 +1,5 @@
 name: Post-Deploy Workflow
-on:
-  deployment_status:
-    types: [success]
+on: deployment_status
 jobs:
   post-deploy:
     runs-on: ubuntu-latest
