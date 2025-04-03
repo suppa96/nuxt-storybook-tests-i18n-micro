@@ -1,0 +1,14 @@
+on:
+  repository_dispatch:
+    types: [cloudflare-deploy-complete]
+jobs:
+  post-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify dispatch
+        run: |
+          echo "Received dispatch event"
+          echo "Event payload: ${{ github.event.client_payload }}"
+      - name: Execute tasks
+        run: |
+          # Your post-deployment tasks here

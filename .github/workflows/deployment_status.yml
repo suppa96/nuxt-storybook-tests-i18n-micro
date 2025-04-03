@@ -1,0 +1,15 @@
+name: Post-Deploy Workflow
+on:
+  deployment_status:
+    types: [success]
+jobs:
+  post-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify deployment
+        run: |
+          echo "Cloudflare Pages deployment completed successfully"
+          echo "Deployment ID: ${{ github.event.deployment.id }}"
+      - name: Execute post-deploy tasks
+        run: |
+          # Your post-deployment tasks here
